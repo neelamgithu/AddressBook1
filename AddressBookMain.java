@@ -89,6 +89,16 @@ public static void add_contact() {
             System.out.println("updation done successfully");
         }
     }
+    public static void remove_contact() {
+        int count = check();//calling check method
+        if (count == -1) {
+            System.out.println(" invalid name \nplease enter valid name");
+
+        } else {
+            con.remove(count);
+            System.out.println("contact removed successfully!!!");
+        }
+    }
     public static int check() {
         sc.nextLine();// to avoid /n issue in after taking integer as input
         int count = 0;
