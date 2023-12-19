@@ -28,6 +28,12 @@ class Contacts {
         this.email = email;
 
                     }
+                     @Override
+    public String toString() {
+
+        return "\n name: " + first_name + " " + last_name + " \n address: " + address + " \n city: " + city
+                + "\n state: " + state + "\n zip: " + zip + " \n phone nunber:" + phone_number + " \nemail: " + email;
+    }
                 }
  
  
@@ -35,10 +41,40 @@ class Contacts {
  public class AddressBookMain{
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Contacts> con = new ArrayList<Contacts>();
- public static void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println("welcome to address book program");
- }
+ 
+    do {
+        System.out.println(
+                "enter your choice\n press 1: add contact \n press 2: edit contact detail \n press 3: remove contact  \n press 4: print all contacts \n press 5: to exit\n");
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
 
+                add_contact();
+                break;
+            case 2:
+                edit_contact();
+                break;
+            case 3:
+                remove_contact();
+                break;
+            case 4:
+                print_contact();
+                break;
+            case 5:
+                System.exit(0);
+                break;
+
+            default:
+                System.out.println("wrong choice please enter valid input");
+                break;
+        }
+
+    } while (true);
+ }
+    
+ 
 public static void add_contact() {
         sc.nextLine();// to avoid /n issue in after taking integer as input
         System.out.println("enter first name ");
@@ -60,6 +96,16 @@ public static void add_contact() {
         String email = sc.nextLine();
         Contacts cont = new Contacts(first_name, last_name, address, city, state, zip, phone_number, email);
         con.add(cont);
+    }
+    public static void print_contact() {
+        if (con.size() == 0) {
+            System.out.println("nothing to print you need to add contact first");
+        } else {
+            for (int i = 0; i < con.size(); i++) {
+                System.out.println("----------------------------------------------------------");
+                System.out.println(con.get(i));
+            }
+        }
     }
     public static void edit_contact() {
         int count = check();//calling check methods
